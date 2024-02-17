@@ -1,0 +1,9 @@
+{
+  "dependencies": {
+    "@ngx-loading-bar/core": "^6.0.2",
+    "@ngx-loading-bar/http-client": "^6.0.2",
+    "@sreyaj/ng-shimmer": "^2.0.0",
+    "angular-loading-bar": "^0.9.0",
+    "ngx-shimmer-loading": "^0.0.5"
+  }
+}

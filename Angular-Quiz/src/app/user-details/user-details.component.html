@@ -1,0 +1,54 @@
+<div>
+  <app-header [hideSearchbar]="true"></app-header>
+</div>
+
+<div class="container">
+  <div class="row">
+    <div class=col-12>
+
+      <div class="user-wrapper" *ngIf="!user">
+        <div class="mb-4">
+          <button [routerLink]="['/home']" mat-stroked-button>
+            <mat-icon>keyboard_backspace</mat-icon>
+            Back Home
+          </button>
+        </div>
+        <mat-card>
+          <mat-card-header>
+            <div>
+              <app-shimmer [style]="{'border-radius': '50%','height':'100px','width':'100px'}"></app-shimmer>
+            </div>
+            <mat-card-title> <app-shimmer
+                [style]="{'border-radius': '4px','height':'5px','width':'200px'}"></app-shimmer>
+            </mat-card-title>
+            <mat-card-subtitle>
+              <app-shimmer [style]="{'border-radius': '4px','height':'5px','width':'90px'}"></app-shimmer>
+            </mat-card-subtitle>
+          </mat-card-header>
+        </mat-card>
+      </div>
+
+      <div class="user-wrapper" *ngIf="user">
+        <div class="mb-4">
+          <button [routerLink]="['/home']" mat-stroked-button>
+            <mat-icon>keyboard_backspace</mat-icon>
+            Back Home
+          </button>
+        </div>
+        <mat-card>
+          <mat-card-header>
+            <div>
+              <img class="user-image" [src]="user.avatar">
+              <app-shimmer></app-shimmer>
+            </div>
+            <mat-card-title>{{user.first_name}} {{user.last_name}}</mat-card-title>
+            <mat-card-subtitle><a color="primary" mat-button href="mailto:{{user.email}}">{{user.email}}</a>
+            </mat-card-subtitle>
+          </mat-card-header>
+        </mat-card>
+      </div>
+    </div>
+  </div>
+
+
+</div>
