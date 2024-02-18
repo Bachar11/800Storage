@@ -1,0 +1,68 @@
+<div>
+  <app-header (onSearchText)="onSearch($event)"></app-header>
+</div>
+
+<div class="container">
+  <div class="row">
+    <ng-container *ngIf="loading">
+      <div class="col-12 col-md-6 col-lg-4 mb-3" *ngFor="let item of [1,2,3,4,5,6]">
+        <mat-card>
+          <mat-card-content>
+            <div class="row no-gutters user-card">
+              <div class="col-3">
+                <app-shimmer [style]="{'border-radius':'50%','height':'70px','width':'70px'}"></app-shimmer>
+              </div>
+              <div class="col-9">
+                <div class="card-body">
+                  <h2 class="card-title">
+                    <app-shimmer [style]="{'border-radius':'4px','height':'5px','width':'90px'}"></app-shimmer>
+                  </h2>
+                  <p class="card-text">
+                    <app-shimmer [style]="{'border-radius':'4px','height':'5px','width':'160px'}"></app-shimmer>
+                  </p>
+                </div>
+              </div>
+            </div>
+          </mat-card-content>
+          <mat-card-actions align="end">
+            <button mat-button color="primary"><app-shimmer
+                [style]="{'border-radius':'4px','height':'30px','width':'100px'}"></app-shimmer></button>
+          </mat-card-actions>
+        </mat-card>
+      </div>
+    </ng-container>
+
+    <ng-container *ngIf="!loading">
+      <div class="col-12 col-md-6 col-lg-4 mb-3" *ngFor="let user of filteredUsers">
+        <ng-container *ngIf="!noDataFound">
+          <mat-card>
+            <mat-card-content>
+              <div class="user-card">
+                <div class="image">
+                  <img [src]="user.avatar" class="img-fluid" alt="{{ user.first_name }} {{ user.last_name }}">
+                </div>
+                <div class="user-text">
+                  <div class="card-body">
+                    <h2 class="card-title">{{ user.first_name }} {{ user.last_name }}</h2>
+                    <p class="card-text">{{ user.email }}</p>
+                  </div>
+                </div>
+              </div>
+            </mat-card-content>
+            <mat-card-actions align="end">
+              <a mat-button color="primary" [routerLink]="[user.id]">View Details</a>
+            </mat-card-actions>
+          </mat-card>
+        </ng-container>
+      </div>
+      <div *ngIf="noDataFound" class="col-12">
+        <img src="/assets/images/error/error.png" class="image img-fluid" alt="Error Image">
+      </div>
+    </ng-container>
+  </div>
+</div>
+
+<div class="footer">
+  <mat-paginator [length]="totalUsers" [pageIndex]="page -1" [hidePageSize]="true" [pageSize]="limit"
+    (page)="onPageChange($event)" aria-label="Select page"></mat-paginator>
+</div>
