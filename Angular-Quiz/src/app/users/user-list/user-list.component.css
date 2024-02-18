@@ -5,7 +5,7 @@
 }
 
 .card-text {
-  font-size: 18px;
+  font-size: 12px;
   color: gray;
 }
 
@@ -15,7 +15,7 @@
   width: 100%;
 }
 
-.img-fluid {
+.image img{
   border-radius: 50%;
   height: 80px;
   width: 80px;
@@ -26,6 +26,18 @@
   cursor: pointer;
   transition: box-shadow 0.1s ease;
   align-items: center;
+  display: flex;
+
+  .image{
+    width: 80px;
+    flex-basis: 80px;
+    flex-grow: 0;
+    flex-shrink: 0;
+  }
+
+  .user-text{
+    padding-left:10px;
+  }
 }
 
 mat-card:hover {

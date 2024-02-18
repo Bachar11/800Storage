@@ -5,7 +5,10 @@
     </a>
 
     <div class="search-wrapper" *ngIf="!hideSearchbar">
-      <input type="text" id="search-text" [(ngModel)]="SearchByUser" placeholder="Type here to search" (input)="onSearch()">
+      <input type="text" id="search-text" [(ngModel)]="searchText" placeholder="Type here to search"
+        (input)="onInputChange()">
     </div>
+
+    <div><a mat-flat-button color="primary" href="mailto:basharaliali500@gmail.com?subject=You're Hired!">Hire Bachar Ali </a></div>
   </div>
 </nav>

@@ -8,10 +8,10 @@
 
       <div class="user-wrapper" *ngIf="!user">
         <div class="mb-4">
-          <button [routerLink]="['/home']" mat-stroked-button>
+          <a [routerLink]="['/users']" mat-stroked-button>
             <mat-icon>keyboard_backspace</mat-icon>
             Back Home
-          </button>
+          </a>
         </div>
         <mat-card>
           <mat-card-header>
@@ -30,7 +30,7 @@
 
       <div class="user-wrapper" *ngIf="user">
         <div class="mb-4">
-          <button [routerLink]="['/home']" mat-stroked-button>
+          <button [routerLink]="['/users']" mat-stroked-button>
             <mat-icon>keyboard_backspace</mat-icon>
             Back Home
           </button>

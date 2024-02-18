@@ -1,4 +1,4 @@
-import { environment } from './../environments/environments';
+import { environment } from '../../../environments/environments';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, of, tap } from 'rxjs';
@@ -6,7 +6,7 @@ import { Observable, of, tap } from 'rxjs';
 @Injectable({
   providedIn: 'root'
 })
-export class UserApiService {
+export class UserService {
   private cache: any = {};
 
   constructor(private http: HttpClient) { }

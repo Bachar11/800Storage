@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { UserApiService } from '../user-api.service';
 import { ActivatedRoute, Router } from '@angular/router';
+import { User } from 'src/app/_models/user.model';
+import { UserService } from '../_services/user.service';
 
 @Component({
   selector: 'app-user-list',
@@ -8,16 +9,15 @@ import { ActivatedRoute, Router } from '@angular/router';
   styleUrls: ['./user-list.component.css']
 })
 export class UserListComponent implements OnInit {
-  Users: any[] = [];
-  SearchByUser = "";
-  filteredUsers: any[] = [];
-  totalUsers = 12;
-  page = 1;
+  users: User[] = [];
+  filteredUsers: User[] = [];
+  totalUsers: number = 12;
+  page: number = 1;
   limit: number = 6;
-  select: string = '';
   loading: boolean = true;
+  noDataFound: boolean = false;
 
-  constructor(private UserService: UserApiService, private route: ActivatedRoute, private router: Router) {
+  constructor(private userService: UserService, private route: ActivatedRoute, private router: Router) {
     const queryParam = this.route.snapshot.queryParamMap.get("page");
     if (queryParam) {
       this.page = parseInt(queryParam);
@@ -30,32 +30,33 @@ export class UserListComponent implements OnInit {
 
   getUsers() {
     this.loading = true;
-    this.UserService.getUsers(this.page).subscribe(
-      (response: any) => {
+    this.userService.getUsers(this.page).subscribe(
+      (response: { data: User[], total: number }) => {
+        // timeout added inorder to show placeholder shimmer because the api is very fast
         setTimeout(() => {
           this.loading = false;
-          this.Users = response.data;
-          this.filteredUsers = this.Users;
-          this.totalUsers = response.total
+          this.users = response.data;
+          this.filteredUsers = this.users;
+          this.totalUsers = response.total;
         }, 1000);
       }
     );
   }
 
   onSearch(query: string) {
-    this.SearchByUser = query;
-    if (this.SearchByUser !== '') {
-      const searchUser = this.SearchByUser.toLowerCase()
-      this.filteredUsers = this.Users.filter(user =>
+    // check not empty
+    if (query) {
+      const searchUser = query.toLowerCase()
+      this.filteredUsers = this.users.filter((user: User) =>
         user.first_name.toLowerCase().includes(searchUser) ||
         user.last_name.toLowerCase().includes(searchUser) ||
         user.email.toLowerCase().includes(searchUser) ||
         user.id.toString().includes(searchUser)
       );
-      this.filteredUsers = this.filteredUsers.length > 0 ? this.filteredUsers : [{ noDataFound: true }];
     } else {
-      this.filteredUsers = this.Users;
+      this.filteredUsers = this.users;
     }
+    this.noDataFound = this.filteredUsers.length == 0;
   }
 
   onPageChange(event: any) {

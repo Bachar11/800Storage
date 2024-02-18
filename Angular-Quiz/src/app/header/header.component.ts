@@ -1,6 +1,6 @@
 import { Component, Output, EventEmitter, Input } from '@angular/core';
 import { Router } from '@angular/router';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, Subject, debounceTime } from 'rxjs';
 
 @Component({
   selector: 'app-header',
@@ -8,12 +8,23 @@ import { BehaviorSubject } from 'rxjs';
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent {
-  SearchByUser = "";
+  searchText = "";
   @Input() hideSearchbar: boolean = false;
-  @Output() Search: EventEmitter<string> = new EventEmitter<string>();
+  @Output() onSearchText: EventEmitter<string> = new EventEmitter<string>();
+  private searchSubject: Subject<string> = new Subject<string>();
 
-  constructor(private router: Router) { }
+  constructor() {
+    // avoid calling the update right away, give some buffer for the user to type their search input
+    this.searchSubject.pipe(debounceTime(300)).subscribe(value => {
+      this.onSearch();
+    });
+  }
+
+  onInputChange() {
+    this.searchSubject.next(this.searchText);
+  }
+
   onSearch() {
-    this.Search.emit(this.SearchByUser);
+    this.onSearchText.emit(this.searchText);
   }
 }
