@@ -1,35 +1,33 @@
-.card-title{
-    font-size: 18px;
-    font-weight: bold;
-    margin-bottom: 0px;
+.card-title {
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 0px;
 }
 
-.card-text{
-    font-size: 18px;
-    color: gray;
+.card-text {
+  font-size: 18px;
+  color: gray;
 }
+
 .footer {
-    position: fixed;
-    bottom: 0;
-    width: 100%;
-  }
-  .section{
-    cursor: auto;
-  }
-.img-fluid{
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+}
+
+.img-fluid {
   border-radius: 50%;
   height: 80px;
   width: 80px;
   border: 2px solid #fff;
 }
 
-  .user-card{
-    cursor: pointer !important;
-    transition: box-shadow 0.10s ease;
-    align-items: center;
-  }
-  mat-card:hover {
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-  }
-  
-  
+.user-card {
+  cursor: pointer;
+  transition: box-shadow 0.1s ease;
+  align-items: center;
+}
+
+mat-card:hover {
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}

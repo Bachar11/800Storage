@@ -1,32 +1,38 @@
-.navbar-brand{
+/* CSS */
+.navbar-brand {
     font-size: 30px;
     padding: 5px;
-
 }
-.navbar-nav{
+
+.navbar-nav {
     padding-right: 50px;
     padding: 5px;
     font-size: 20px;
 }
 
-.nav-link{
-    cursor: pointer !important;
-}
-.content{
-        margin: 0px 35%;
+.nav-link {
+    cursor: pointer;
 }
 
-.search-wrapper{
-    width: 100%;
+.content {
+    margin: 0 auto;
+    max-width: 70%;
+}
+
+.search-wrapper {
+    flex: 1; 
+    display: flex;
+    align-items: center;
+    justify-content: center;
     max-width: 500px;
     margin: 0 auto;
+}
 
-    input{
-        width: 100%;
-        border-radius: 5px;
-        height: 42px;
-        background-color: #c8c8c8;
-        border: none;
-        padding-left: 19px;
-    }
+.search-wrapper input {
+    width: 100%;
+    border-radius: 5px;
+    height: 42px;
+    background-color: #c8c8c8;
+    border: none;
+    padding-left: 19px;
 }

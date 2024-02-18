@@ -13,7 +13,7 @@ export class HeaderComponent {
   @Output() Search: EventEmitter<string> = new EventEmitter<string>();
 
   constructor(private router: Router) { }
-  search() {
+  onSearch() {
     this.Search.emit(this.SearchByUser);
   }
 }

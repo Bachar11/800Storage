@@ -9,15 +9,19 @@ import { ActivatedRoute, Router } from '@angular/router';
 })
 export class UserDetailsComponent implements OnInit {
   userId: any;
-  user: any
-  constructor(private userService: UserApiService, private route: ActivatedRoute, private Route: Router) { }
+  user: any;
+
+  constructor(private userService: UserApiService, private route: ActivatedRoute, private router: Router) { }
   
   ngOnInit(): void {
     const userId = this.route.snapshot.paramMap.get('id');
     this.userId = Number(userId);
+    
     this.userService.getSingleUser(this.userId).subscribe((response: any) => {
-      this.user = response.data
-    })
+      setTimeout(()=>{
+        this.user = response.data;
 
+      },1000)
+    });
   }
 }
